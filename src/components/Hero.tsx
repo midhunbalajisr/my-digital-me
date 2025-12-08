@@ -93,7 +93,7 @@ const Hero = () => {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/midhunbalaji-sankar-024153351"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"

@@ -18,6 +18,7 @@ const Navigation = () => {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
     { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
   ];
@@ -34,8 +35,8 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a href="#home" className="text-xl md:text-2xl font-bold">
-            <span className="text-gradient">MB</span>
-            <span className="text-foreground">.dev</span>
+            <span className="text-gradient">Man of</span>
+            <span className="text-foreground"> dev</span>
           </a>
 
           {/* Desktop Navigation */}

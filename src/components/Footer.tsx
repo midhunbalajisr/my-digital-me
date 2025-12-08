@@ -7,8 +7,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-center md:text-left">
             <a href="#home" className="text-xl font-bold">
-              <span className="text-gradient">MB</span>
-              <span className="text-foreground">.dev</span>
+              <span className="text-gradient">Man of</span>
+              <span className="text-foreground"> dev</span>
             </a>
           </div>
 
