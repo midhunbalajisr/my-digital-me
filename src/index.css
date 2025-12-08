@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,52 +6,58 @@
 
 @layer base {
   :root {
-    --background: 220 20% 6%;
-    --foreground: 210 20% 95%;
+    --background: 230 25% 5%;
+    --foreground: 180 30% 95%;
 
-    --card: 220 18% 10%;
-    --card-foreground: 210 20% 95%;
+    --card: 230 22% 9%;
+    --card-foreground: 180 30% 95%;
 
-    --popover: 220 18% 10%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 230 22% 9%;
+    --popover-foreground: 180 30% 95%;
 
-    --primary: 175 80% 50%;
-    --primary-foreground: 220 20% 6%;
+    --primary: 170 100% 45%;
+    --primary-foreground: 230 25% 5%;
 
-    --secondary: 220 15% 15%;
-    --secondary-foreground: 210 20% 95%;
+    --secondary: 230 20% 12%;
+    --secondary-foreground: 180 30% 95%;
 
-    --muted: 220 15% 18%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 230 18% 16%;
+    --muted-foreground: 200 15% 60%;
 
-    --accent: 175 80% 50%;
-    --accent-foreground: 220 20% 6%;
+    --accent: 280 80% 60%;
+    --accent-foreground: 230 25% 5%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 175 80% 50%;
+    --border: 230 20% 15%;
+    --input: 230 20% 15%;
+    --ring: 170 100% 45%;
 
     --radius: 0.75rem;
 
-    /* Custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(175 80% 50%), hsl(200 80% 50%));
-    --gradient-subtle: linear-gradient(180deg, hsl(220 20% 8%), hsl(220 20% 4%));
-    --gradient-card: linear-gradient(145deg, hsl(220 18% 12%), hsl(220 18% 8%));
-    --glow-primary: 0 0 40px hsl(175 80% 50% / 0.3);
-    --glow-accent: 0 0 60px hsl(175 80% 50% / 0.2);
-    --shadow-card: 0 4px 30px hsl(0 0% 0% / 0.3);
+    /* Enhanced Custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(170 100% 45%), hsl(280 80% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(170 100% 45%) 0%, hsl(200 90% 50%) 50%, hsl(280 80% 60%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(230 25% 7%), hsl(230 25% 3%));
+    --gradient-card: linear-gradient(145deg, hsl(230 22% 11%), hsl(230 22% 7%));
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(170 100% 45% / 0.15) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(280 80% 60% / 0.1) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(200 90% 50% / 0.1) 0px, transparent 50%);
+    --glow-primary: 0 0 50px hsl(170 100% 45% / 0.4);
+    --glow-accent: 0 0 80px hsl(280 80% 60% / 0.3);
+    --glow-multi: 0 0 30px hsl(170 100% 45% / 0.3), 0 0 60px hsl(280 80% 60% / 0.2);
+    --shadow-card: 0 8px 40px hsl(0 0% 0% / 0.4);
+    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.5);
 
-    --sidebar-background: 220 18% 8%;
-    --sidebar-foreground: 210 20% 95%;
-    --sidebar-primary: 175 80% 50%;
-    --sidebar-primary-foreground: 220 20% 6%;
-    --sidebar-accent: 220 15% 15%;
-    --sidebar-accent-foreground: 210 20% 95%;
-    --sidebar-border: 220 15% 18%;
-    --sidebar-ring: 175 80% 50%;
+    --sidebar-background: 230 22% 7%;
+    --sidebar-foreground: 180 30% 95%;
+    --sidebar-primary: 170 100% 45%;
+    --sidebar-primary-foreground: 230 25% 5%;
+    --sidebar-accent: 230 20% 12%;
+    --sidebar-accent-foreground: 180 30% 95%;
+    --sidebar-border: 230 20% 15%;
+    --sidebar-ring: 170 100% 45%;
   }
 }
 
@@ -61,9 +67,27 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Rajdhani', sans-serif;
     background: var(--gradient-subtle);
     min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: var(--gradient-mesh);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'Fira Code', monospace;
   }
 
   html {

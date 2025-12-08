@@ -18,14 +18,9 @@ const Experience = () => {
 
   const education = [
     {
-      institution: "Computer Science",
-      degree: "Bachelor's Degree",
-      description: "Studying core computer science concepts, algorithms, and software development",
-    },
-    {
-      institution: "Business Administration",
-      degree: "Additional Studies",
-      description: "Building business acumen alongside technical skills",
+      institution: "Computer Science Business System (CSBS)",
+      degree: "Bachelor of Engineering (B.E)",
+      description: "Combining core computer science with business analytics, software engineering, and enterprise solutions",
     },
   ];
 
