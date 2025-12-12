@@ -1,26 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import TypingAnimation from '@/components/TypingAnimation';
 
 const Landing = () => {
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false);
   const [canEnter, setCanEnter] = useState(false);
   
-  const text = "MIDHUN'S CREATIVE";
-  
-  const colors = [
-    'hsl(170, 100%, 45%)',
-    'hsl(280, 80%, 60%)',
-    'hsl(200, 90%, 50%)',
-    'hsl(320, 80%, 55%)',
-    'hsl(45, 100%, 60%)',
-    'hsl(140, 80%, 50%)',
-    'hsl(0, 80%, 60%)',
+  const text = "MIDHUN CREATORS";
+
+  // Code snippets for background animation
+  const codeSnippets = [
+    'const developer = "Midhun";',
+    'function createMagic() { }',
+    'import { creativity } from "mind";',
+    '<Component props={amazing} />',
+    'async function buildDreams() { }',
+    'export default Innovation;',
+    'interface Skills { coding: true }',
+    'npm run build-future',
+    'git commit -m "success"',
+    'const passion = Infinity;',
+    'while(true) { learn(); }',
+    'return <Success />;',
   ];
 
   useEffect(() => {
-    setIsVisible(true);
-    const timer = setTimeout(() => setCanEnter(true), 2000);
+    const timer = setTimeout(() => setCanEnter(true), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -30,145 +36,152 @@ const Landing = () => {
 
   return (
     <div 
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-background cursor-pointer"
       onClick={canEnter ? handleEnter : undefined}
     >
-      {/* Animated background particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(30)].map((_, i) => (
-          <div
+      {/* Animated code rain background */}
+      <div className="absolute inset-0 overflow-hidden opacity-20">
+        {codeSnippets.map((snippet, i) => (
+          <motion.div
             key={i}
-            className="absolute rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 20 + 5}px`,
-              height: `${Math.random() * 20 + 5}px`,
-              background: colors[i % colors.length],
-              opacity: 0.3,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${Math.random() * 4 + 4}s`,
+            className="absolute text-primary/60 font-mono text-sm whitespace-nowrap"
+            initial={{ 
+              x: `${(i * 8.5) % 100}%`,
+              y: -100,
+              opacity: 0 
             }}
-          />
+            animate={{ 
+              y: ['0%', '120%'],
+              opacity: [0, 0.7, 0.7, 0]
+            }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              repeat: Infinity,
+              delay: i * 0.8,
+              ease: 'linear',
+            }}
+            style={{ left: `${(i * 8.5) % 100}%` }}
+          >
+            {snippet}
+          </motion.div>
         ))}
       </div>
 
-      {/* Floating geometric shapes */}
+      {/* Floating brackets and code symbols */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => {
-          const shapes = ['triangle', 'square', 'diamond'];
-          const shape = shapes[i % 3];
-          return (
-            <div
-              key={`shape-${i}`}
-              className="absolute animate-float"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${Math.random() * 5 + 5}s`,
-              }}
-            >
-              {shape === 'triangle' && (
-                <div
-                  className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-b-[25px]"
-                  style={{ 
-                    borderBottomColor: colors[i % colors.length],
-                    opacity: 0.4,
-                    transform: `rotate(${Math.random() * 360}deg)`,
-                  }}
-                />
-              )}
-              {shape === 'square' && (
-                <div
-                  className="w-5 h-5 border-2"
-                  style={{ 
-                    borderColor: colors[i % colors.length],
-                    opacity: 0.4,
-                    transform: `rotate(${Math.random() * 360}deg)`,
-                  }}
-                />
-              )}
-              {shape === 'diamond' && (
-                <div
-                  className="w-5 h-5 border-2 rotate-45"
-                  style={{ 
-                    borderColor: colors[i % colors.length],
-                    opacity: 0.4,
-                  }}
-                />
-              )}
-            </div>
-          );
-        })}
+        {['{ }', '< />', '( )', '[ ]', '=> ', '&&', '||', '++', '::'].map((symbol, i) => (
+          <motion.div
+            key={`symbol-${i}`}
+            className="absolute text-primary/30 font-mono text-2xl md:text-4xl"
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: [0.1, 0.4, 0.1],
+              y: [0, -30, 0],
+              rotate: [0, 10, -10, 0],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 2,
+              repeat: Infinity,
+              delay: i * 0.5,
+            }}
+            style={{ 
+              left: `${10 + (i * 10)}%`,
+              top: `${20 + (i * 8) % 60}%`,
+            }}
+          >
+            {symbol}
+          </motion.div>
+        ))}
       </div>
 
-      {/* Main title with floating colorful letters */}
-      <div className="relative z-10 flex flex-wrap justify-center gap-2 px-4">
+      {/* Terminal-like decorative elements */}
+      <motion.div
+        className="absolute top-10 left-10 hidden md:flex items-center gap-2 text-muted-foreground font-mono text-sm"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.5 }}
+      >
+        <span className="text-primary">$</span>
+        <motion.span
+          animate={{ opacity: [1, 0] }}
+          transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse' }}
+        >
+          _
+        </motion.span>
+      </motion.div>
+
+      {/* Main title with staggered animation */}
+      <div className="relative z-10 flex flex-wrap justify-center gap-1 md:gap-2 px-4">
         {text.split('').map((char, index) => (
-          <span
+          <motion.span
             key={index}
-            className="text-5xl md:text-7xl lg:text-9xl font-bold transition-all duration-500"
+            className="text-4xl md:text-6xl lg:text-8xl font-bold font-heading"
+            initial={{ opacity: 0, y: 50, rotateX: -90 }}
+            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+            transition={{
+              duration: 0.6,
+              delay: index * 0.05,
+              type: 'spring',
+              stiffness: 100,
+            }}
             style={{
-              color: colors[index % colors.length],
-              textShadow: `0 0 30px ${colors[index % colors.length]}, 0 0 60px ${colors[index % colors.length]}`,
-              fontFamily: 'Orbitron, sans-serif',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible 
-                ? `translateY(${Math.sin(index * 0.5) * 10}px)` 
-                : 'translateY(50px)',
-              transitionDelay: `${index * 50}ms`,
-              animation: isVisible ? `float-letter 3s ease-in-out infinite` : 'none',
-              animationDelay: `${index * 0.1}s`,
+              color: 'hsl(var(--primary))',
+              textShadow: '0 0 40px hsl(var(--primary) / 0.5), 0 0 80px hsl(var(--primary) / 0.3)',
             }}
           >
             {char === ' ' ? '\u00A0' : char}
-          </span>
+          </motion.span>
         ))}
       </div>
 
-      {/* Subtitle */}
-      <p
-        className="text-lg md:text-2xl text-muted-foreground mt-8 relative z-10 font-light tracking-widest"
-        style={{
-          opacity: canEnter ? 1 : 0,
-          transition: 'opacity 0.5s ease-in-out',
-        }}
+      {/* Typing animation subtitle */}
+      <motion.div
+        className="mt-8 relative z-10 text-lg md:text-2xl font-light tracking-widest text-muted-foreground"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
       >
-        DEVELOPER • DESIGNER • INNOVATOR
-      </p>
+        <TypingAnimation />
+      </motion.div>
 
-      {/* Enter button */}
-      <button
+      {/* Enter button with code theme */}
+      <motion.button
         onClick={handleEnter}
-        className="mt-12 px-8 py-4 relative z-10 group overflow-hidden rounded-full border-2 border-primary/50 transition-all duration-300 hover:border-primary"
-        style={{
-          opacity: canEnter ? 1 : 0,
-          transform: canEnter ? 'translateY(0)' : 'translateY(20px)',
-          transition: 'all 0.5s ease-in-out',
-        }}
+        className="mt-12 px-8 py-4 relative z-10 group overflow-hidden rounded-lg border border-primary/50 bg-primary/10 backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-primary/20"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: canEnter ? 1 : 0, y: canEnter ? 0 : 20 }}
+        transition={{ duration: 0.5 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
-        <span className="relative z-10 text-lg font-semibold tracking-wider text-foreground group-hover:text-primary-foreground transition-colors">
-          ENTER PORTFOLIO
+        <span className="relative z-10 font-mono text-lg font-semibold text-primary">
+          {'>'} Enter_Portfolio
         </span>
-        <div className="absolute inset-0 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-      </button>
+      </motion.button>
 
-      {/* Glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px]" />
+      {/* Code-themed hint */}
+      <motion.p
+        className="mt-6 text-sm text-muted-foreground font-mono"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: canEnter ? 0.6 : 0 }}
+        transition={{ delay: 2 }}
+      >
+        // Click anywhere to continue
+      </motion.p>
 
-      <style>{`
-        @keyframes float-letter {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-15px);
-          }
-        }
-      `}</style>
+      {/* Central glow effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
+      
+      {/* Corner decorations */}
+      <div className="absolute bottom-10 right-10 text-primary/30 font-mono text-xs hidden md:block">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+        >
+          v1.0.0
+        </motion.div>
+      </div>
     </div>
   );
 };
