@@ -5,27 +5,35 @@ import profileImage from "@/assets/profile.jpg";
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden py-20">
-      {/* Background decorative elements */}
+      {/* Enhanced background with animated glow orbs */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/5 rounded-full" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-primary/5 rounded-full" />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/10 rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-accent/5 rounded-full" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          {/* Profile Image */}
-          <div className="relative animate-fade-in">
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 glow-primary animate-float">
+          {/* Profile Image with enhanced multi-layer glow */}
+          <div className="relative animate-fade-in group">
+            {/* Multiple glow layers */}
+            <div className="absolute -inset-6 bg-gradient-to-r from-primary via-accent to-primary rounded-full blur-2xl opacity-60 group-hover:opacity-100 transition-opacity animate-pulse" />
+            <div className="absolute -inset-4 bg-gradient-to-r from-accent via-primary to-accent rounded-full blur-xl opacity-40 animate-pulse" style={{ animationDelay: '0.5s' }} />
+            <div className="absolute -inset-2 bg-primary/40 rounded-full blur-lg animate-pulse" style={{ animationDelay: '1s' }} />
+            
+            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/50 group-hover:border-primary transition-colors animate-float">
               <img
                 src={profileImage}
                 alt="Midhunbalaji"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
               />
             </div>
-            {/* Decorative ring */}
-            <div className="absolute -inset-4 border-2 border-dashed border-primary/20 rounded-full animate-spin" style={{ animationDuration: '20s' }} />
+            
+            {/* Rotating ring effects */}
+            <div className="absolute -inset-8 border-2 border-dashed border-primary/30 rounded-full animate-spin" style={{ animationDuration: '20s' }} />
+            <div className="absolute -inset-12 border border-dashed border-accent/20 rounded-full animate-spin" style={{ animationDuration: '30s', animationDirection: 'reverse' }} />
           </div>
 
           {/* Content */}
@@ -90,7 +98,7 @@ const Hero = () => {
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300 hover:glow-primary"
               >
                 <Github className="w-5 h-5" />
               </a>
@@ -98,7 +106,7 @@ const Hero = () => {
                 href="https://www.linkedin.com/in/midhunbalaji-sankar-024153351"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300 hover:glow-primary"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
