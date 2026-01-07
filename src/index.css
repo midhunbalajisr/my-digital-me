@@ -6,59 +6,59 @@
 
 @layer base {
   :root {
-    /* Light Theme - White backgrounds */
+    /* Light Theme - Pure White backgrounds */
     --background: 0 0% 100%;
-    --foreground: 220 25% 10%;
+    --foreground: 220 30% 15%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 220 25% 10%;
+    --card: 0 0% 99%;
+    --card-foreground: 220 30% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 10%;
+    --popover-foreground: 220 30% 15%;
 
-    --primary: 170 100% 35%;
+    --primary: 170 100% 32%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 94%;
-    --secondary-foreground: 220 25% 10%;
+    --secondary: 220 20% 96%;
+    --secondary-foreground: 220 30% 15%;
 
-    --muted: 220 12% 90%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 15% 40%;
 
-    --accent: 280 80% 55%;
+    --accent: 280 85% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 88%;
-    --input: 220 15% 88%;
-    --ring: 170 100% 35%;
+    --border: 220 20% 90%;
+    --input: 220 20% 90%;
+    --ring: 170 100% 32%;
 
     --radius: 0.75rem;
 
-    /* Enhanced Custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(170 100% 35%), hsl(280 80% 55%));
-    --gradient-hero: linear-gradient(135deg, hsl(170 100% 35%) 0%, hsl(200 90% 45%) 50%, hsl(280 80% 55%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 20% 98%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 15% 97%));
-    --gradient-mesh: radial-gradient(at 40% 20%, hsl(170 100% 35% / 0.08) 0px, transparent 50%),
-                     radial-gradient(at 80% 0%, hsl(280 80% 55% / 0.06) 0px, transparent 50%),
-                     radial-gradient(at 0% 50%, hsl(200 90% 45% / 0.06) 0px, transparent 50%);
-    --glow-primary: 0 0 50px hsl(170 100% 35% / 0.25);
-    --glow-accent: 0 0 80px hsl(280 80% 55% / 0.2);
-    --glow-multi: 0 0 30px hsl(170 100% 35% / 0.2), 0 0 60px hsl(280 80% 55% / 0.15);
-    --shadow-card: 0 8px 40px hsl(220 20% 20% / 0.08);
-    --shadow-elevated: 0 20px 60px hsl(220 20% 20% / 0.12);
+    /* Light theme tokens - bright and clean */
+    --gradient-primary: linear-gradient(135deg, hsl(170 100% 32%), hsl(280 85% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(170 100% 32%) 0%, hsl(200 95% 42%) 50%, hsl(280 85% 50%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 25% 98%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 20% 98%));
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(170 100% 32% / 0.06) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(280 85% 50% / 0.04) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(200 95% 42% / 0.04) 0px, transparent 50%);
+    --glow-primary: 0 0 40px hsl(170 100% 32% / 0.2);
+    --glow-accent: 0 0 60px hsl(280 85% 50% / 0.15);
+    --glow-multi: 0 0 25px hsl(170 100% 32% / 0.15), 0 0 50px hsl(280 85% 50% / 0.1);
+    --shadow-card: 0 4px 20px hsl(220 30% 20% / 0.06);
+    --shadow-elevated: 0 10px 40px hsl(220 30% 20% / 0.1);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 220 25% 10%;
-    --sidebar-primary: 170 100% 35%;
+    --sidebar-background: 0 0% 99%;
+    --sidebar-foreground: 220 30% 15%;
+    --sidebar-primary: 170 100% 32%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 94%;
-    --sidebar-accent-foreground: 220 25% 10%;
-    --sidebar-border: 220 15% 88%;
-    --sidebar-ring: 170 100% 35%;
+    --sidebar-accent: 220 20% 96%;
+    --sidebar-accent-foreground: 220 30% 15%;
+    --sidebar-border: 220 20% 90%;
+    --sidebar-ring: 170 100% 32%;
   }
 
   .dark {
@@ -123,7 +123,7 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Rajdhani', sans-serif;
-    background: var(--gradient-subtle);
+    background: hsl(var(--background));
     min-height: 100vh;
   }
 
@@ -158,7 +158,7 @@
   .text-bold-gradient {
     @apply bg-clip-text text-transparent font-black;
     background-image: var(--gradient-hero);
-    filter: drop-shadow(0 2px 4px hsl(170 100% 45% / 0.3));
+    filter: drop-shadow(0 2px 4px hsl(170 100% 40% / 0.3));
   }
 
   .glow-primary {
@@ -171,10 +171,50 @@
 
   .card-gradient {
     background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
   }
 
   .section-bg {
     @apply bg-background relative;
+  }
+
+  /* Page flip animation */
+  .page-effect {
+    @apply relative overflow-hidden;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--card)) 50%,
+      hsl(var(--background)) 100%
+    );
+  }
+
+  .page-effect::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.03),
+      transparent
+    );
+    animation: page-shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes page-shimmer {
+    0% { left: -100%; }
+    100% { left: 200%; }
+  }
+
+  /* Paper texture effect */
+  .paper-texture {
+    background-image: 
+      linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.02) 50%, transparent 100%),
+      linear-gradient(hsl(var(--background)) 0%, hsl(var(--background)) 100%);
   }
 
   .animate-float {
@@ -190,11 +230,15 @@
   }
 
   .animate-fade-in {
-    animation: fade-in 0.8s ease-out;
+    animation: fade-in 0.3s ease-out;
   }
 
   .animate-scale-in {
-    animation: scale-in 0.5s ease-out;
+    animation: scale-in 0.2s ease-out;
+  }
+
+  .animate-page-turn {
+    animation: page-turn 0.8s ease-out;
   }
 }
 
@@ -230,20 +274,33 @@
 @keyframes fade-in {
   from {
     opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes scale-in {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes page-turn {
+  0% {
+    opacity: 0;
+    transform: rotateY(-10deg) translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0) translateX(0);
   }
 }
 
