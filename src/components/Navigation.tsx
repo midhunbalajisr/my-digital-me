@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,6 +51,7 @@ const Navigation = () => {
                 {link.name}
               </a>
             ))}
+            <ThemeToggle />
             <Button variant="hero" size="sm" asChild>
               <a href="#contact">Hire Me</a>
             </Button>

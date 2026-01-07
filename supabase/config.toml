@@ -1,1 +1,4 @@
 project_id = "rudwdfchnmxdkvkgegec"
+
+[functions.ran-ai-chat]
+verify_jwt = false
