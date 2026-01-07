@@ -14,7 +14,7 @@ const RanAiChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hey! I'm **Ran.ai** 🤖, your friendly developer assistant! Ask me anything about coding, web development, or tech in general. How can I help you today?"
+      content: "Hey there, developer! 👋 I'm **Ran.ai**, your coding companion! 🚀\n\nI can help you with:\n- 💻 Code reviews & debugging\n- ⚛️ React, TypeScript, Node.js\n- 🧠 AI/ML concepts\n- 🏗️ Architecture patterns\n\nWhat are you building today?"
     }
   ]);
   const [input, setInput] = useState("");

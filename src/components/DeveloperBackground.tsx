@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 
 const DeveloperBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,32 +17,54 @@ const DeveloperBackground = () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Matrix-style code rain
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = Array(columns).fill(1);
-    
-    const codeChars = "01</>{}[]();=>const let var function async await import export return if else while for".split("");
-    
+    // Floating code symbols
+    const symbols = ["</>", "{}", "[]", "()", "=>", "//", "/*", "*/", "++", "&&", "||", "!=", "==="];
+    const particles: {
+      x: number;
+      y: number;
+      symbol: string;
+      speed: number;
+      opacity: number;
+      size: number;
+    }[] = [];
+
+    // Create particles
+    for (let i = 0; i < 15; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        symbol: symbols[Math.floor(Math.random() * symbols.length)],
+        speed: 0.2 + Math.random() * 0.3,
+        opacity: 0.03 + Math.random() * 0.05,
+        size: 12 + Math.random() * 8,
+      });
+    }
+
     const draw = () => {
-      // Get computed style for theme awareness
       const isDark = document.documentElement.classList.contains("dark");
       
-      ctx.fillStyle = isDark ? "rgba(5, 10, 20, 0.05)" : "rgba(255, 255, 255, 0.05)";
+      // Clear with background
+      ctx.fillStyle = isDark ? "rgba(10, 15, 25, 0.02)" : "rgba(255, 255, 255, 0.03)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = isDark ? "rgba(0, 200, 150, 0.15)" : "rgba(0, 150, 136, 0.2)";
-      ctx.font = `${fontSize}px 'Fira Code', monospace`;
+      // Draw floating symbols
+      particles.forEach((p) => {
+        ctx.font = `${p.size}px 'Fira Code', monospace`;
+        ctx.fillStyle = isDark 
+          ? `rgba(0, 200, 150, ${p.opacity})` 
+          : `rgba(0, 150, 130, ${p.opacity * 1.5})`;
+        ctx.fillText(p.symbol, p.x, p.y);
 
-      for (let i = 0; i < drops.length; i++) {
-        const char = codeChars[Math.floor(Math.random() * codeChars.length)];
-        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+        // Move upward slowly
+        p.y -= p.speed;
+        p.x += Math.sin(Date.now() * 0.001 + p.y * 0.01) * 0.3;
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+        // Reset when off screen
+        if (p.y < -20) {
+          p.y = canvas.height + 20;
+          p.x = Math.random() * canvas.width;
         }
-        drops[i]++;
-      }
+      });
     };
 
     const interval = setInterval(draw, 50);
@@ -53,83 +74,16 @@ const DeveloperBackground = () => {
     };
   }, []);
 
-  // Floating laptop with flower
-  const flowers = ["🌸", "🌺", "🌷", "💮", "🌼", "🌻"];
-
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Matrix code rain canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0"
       />
-
-      {/* Floating laptop */}
-      <motion.div
-        className="absolute bottom-20 left-10 md:left-20 text-6xl md:text-8xl"
-        animate={{
-          y: [0, -15, 0],
-          rotate: [-2, 2, -2],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      >
-        💻
-      </motion.div>
-
-      {/* Flowers flowing from laptop */}
-      {flowers.map((flower, i) => (
-        <motion.div
-          key={i}
-          className="absolute text-2xl md:text-3xl"
-          initial={{
-            x: 80,
-            y: window.innerHeight - 120,
-            opacity: 0,
-          }}
-          animate={{
-            x: [80, 200 + i * 50, 400 + i * 80, window.innerWidth + 100],
-            y: [window.innerHeight - 120, window.innerHeight - 200 - i * 30, window.innerHeight - 150, window.innerHeight - 180],
-            opacity: [0, 1, 1, 0],
-            rotate: [0, 180, 360, 540],
-          }}
-          transition={{
-            duration: 8 + i * 0.5,
-            repeat: Infinity,
-            delay: i * 1.5,
-            ease: "easeInOut",
-          }}
-        >
-          {flower}
-        </motion.div>
-      ))}
-
-      {/* Additional floating code elements */}
-      {["⌨️", "🖥️", "📱", "🔧", "⚙️"].map((emoji, i) => (
-        <motion.div
-          key={`tech-${i}`}
-          className="absolute text-3xl md:text-4xl opacity-20"
-          style={{
-            left: `${20 + i * 20}%`,
-            top: `${10 + (i * 15) % 70}%`,
-          }}
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 10, -10, 0],
-            opacity: [0.1, 0.3, 0.1],
-          }}
-          transition={{
-            duration: 5 + i,
-            repeat: Infinity,
-            delay: i * 0.8,
-          }}
-        >
-          {emoji}
-        </motion.div>
-      ))}
+      
+      {/* Subtle gradient overlays */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/[0.02] rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/[0.02] rounded-full blur-3xl" />
     </div>
   );
 };
