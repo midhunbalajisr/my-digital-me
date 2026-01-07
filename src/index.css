@@ -6,6 +6,62 @@
 
 @layer base {
   :root {
+    /* Light Theme - White backgrounds */
+    --background: 0 0% 100%;
+    --foreground: 220 25% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 220 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    --primary: 170 100% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 94%;
+    --secondary-foreground: 220 25% 10%;
+
+    --muted: 220 12% 90%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 280 80% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 170 100% 35%;
+
+    --radius: 0.75rem;
+
+    /* Enhanced Custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(170 100% 35%), hsl(280 80% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(170 100% 35%) 0%, hsl(200 90% 45%) 50%, hsl(280 80% 55%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 20% 98%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 15% 97%));
+    --gradient-mesh: radial-gradient(at 40% 20%, hsl(170 100% 35% / 0.08) 0px, transparent 50%),
+                     radial-gradient(at 80% 0%, hsl(280 80% 55% / 0.06) 0px, transparent 50%),
+                     radial-gradient(at 0% 50%, hsl(200 90% 45% / 0.06) 0px, transparent 50%);
+    --glow-primary: 0 0 50px hsl(170 100% 35% / 0.25);
+    --glow-accent: 0 0 80px hsl(280 80% 55% / 0.2);
+    --glow-multi: 0 0 30px hsl(170 100% 35% / 0.2), 0 0 60px hsl(280 80% 55% / 0.15);
+    --shadow-card: 0 8px 40px hsl(220 20% 20% / 0.08);
+    --shadow-elevated: 0 20px 60px hsl(220 20% 20% / 0.12);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 220 25% 10%;
+    --sidebar-primary: 170 100% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 94%;
+    --sidebar-accent-foreground: 220 25% 10%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 170 100% 35%;
+  }
+
+  .dark {
     --background: 230 25% 5%;
     --foreground: 180 30% 95%;
 
@@ -34,9 +90,7 @@
     --input: 230 20% 15%;
     --ring: 170 100% 45%;
 
-    --radius: 0.75rem;
-
-    /* Enhanced Custom tokens */
+    /* Dark theme tokens */
     --gradient-primary: linear-gradient(135deg, hsl(170 100% 45%), hsl(280 80% 60%));
     --gradient-hero: linear-gradient(135deg, hsl(170 100% 45%) 0%, hsl(200 90% 50%) 50%, hsl(280 80% 60%) 100%);
     --gradient-subtle: linear-gradient(180deg, hsl(230 25% 7%), hsl(230 25% 3%));
@@ -101,6 +155,12 @@
     background-image: var(--gradient-primary);
   }
 
+  .text-bold-gradient {
+    @apply bg-clip-text text-transparent font-black;
+    background-image: var(--gradient-hero);
+    filter: drop-shadow(0 2px 4px hsl(170 100% 45% / 0.3));
+  }
+
   .glow-primary {
     box-shadow: var(--glow-primary);
   }
@@ -111,6 +171,10 @@
 
   .card-gradient {
     background: var(--gradient-card);
+  }
+
+  .section-bg {
+    @apply bg-background relative;
   }
 
   .animate-float {
@@ -145,10 +209,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px hsl(175 80% 50% / 0.3);
+    box-shadow: 0 0 20px hsl(170 100% 40% / 0.3);
   }
   50% {
-    box-shadow: 0 0 40px hsl(175 80% 50% / 0.5);
+    box-shadow: 0 0 40px hsl(170 100% 40% / 0.5);
   }
 }
 
@@ -189,14 +253,13 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(220 18% 8%);
+  @apply bg-secondary;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(175 80% 50% / 0.3);
-  border-radius: 4px;
+  @apply bg-primary/30 rounded;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(175 80% 50% / 0.5);
+  @apply bg-primary/50;
 }

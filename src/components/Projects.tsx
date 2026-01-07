@@ -33,21 +33,21 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 md:py-32 relative">
+    <section id="projects" className="py-20 md:py-32 relative section-bg">
       {/* Background element */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/3 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-primary font-mono text-sm mb-4">{"// My Work"}</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Featured <span className="text-gradient">Projects</span>
+          <p className="text-primary font-mono text-sm mb-4 font-bold">{"// My Work"}</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            Featured <span className="text-bold-gradient">Projects</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </div>
 
         {/* Projects Grid */}

@@ -41,20 +41,21 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 md:py-32 relative">
+    <section id="contact" className="py-20 md:py-32 relative section-bg">
       {/* Background element */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-primary font-mono text-sm mb-4">{"// Get In Touch"}</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Let's <span className="text-gradient">Connect</span>
+          <p className="text-primary font-mono text-sm mb-4 font-bold">{"// Get In Touch"}</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            Let's <span className="text-bold-gradient">Connect</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">

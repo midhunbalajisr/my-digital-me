@@ -4,10 +4,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { ThemeProvider } from "./components/ThemeProvider";
 import Landing from "./pages/Landing";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ParticleBackground from "./components/ParticleBackground";
+import RanAiChatbot from "./components/RanAiChatbot";
+import DeveloperBackground from "./components/DeveloperBackground";
 
 const queryClient = new QueryClient();
 
@@ -27,14 +30,18 @@ const AnimatedRoutes = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <ParticleBackground />
-      <BrowserRouter>
-        <AnimatedRoutes />
-      </BrowserRouter>
-    </TooltipProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="portfolio-theme">
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <DeveloperBackground />
+        <ParticleBackground />
+        <BrowserRouter>
+          <AnimatedRoutes />
+          <RanAiChatbot />
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 

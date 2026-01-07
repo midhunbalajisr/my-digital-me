@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import TypingAnimation from '@/components/TypingAnimation';
+import ThemeToggle from '@/components/ThemeToggle';
+import DateTimeDisplay from '@/components/DateTimeDisplay';
 
 const Landing = () => {
   const navigate = useNavigate();
   const [canEnter, setCanEnter] = useState(false);
   
-  const text = "MIDHUN CREATORS";
+  const text = "Midhun's Creation";
 
   // Code snippets for background animation
   const codeSnippets = [
@@ -39,6 +41,14 @@ const Landing = () => {
       className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-background cursor-pointer"
       onClick={canEnter ? handleEnter : undefined}
     >
+      {/* Theme Toggle */}
+      <div className="fixed top-4 left-4 z-50">
+        <ThemeToggle />
+      </div>
+
+      {/* Date Time Display */}
+      <DateTimeDisplay />
+
       {/* Animated code rain background */}
       <div className="absolute inset-0 overflow-hidden opacity-20">
         {codeSnippets.map((snippet, i) => (
@@ -94,9 +104,52 @@ const Landing = () => {
         ))}
       </div>
 
+      {/* Floating laptop with flowers */}
+      <motion.div
+        className="absolute bottom-20 left-10 md:left-20 text-5xl md:text-7xl"
+        animate={{
+          y: [0, -15, 0],
+          rotate: [-2, 2, -2],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      >
+        💻
+      </motion.div>
+
+      {/* Flowers flowing from laptop */}
+      {["🌸", "🌺", "🌷", "💮", "🌼", "🌻"].map((flower, i) => (
+        <motion.div
+          key={`flower-${i}`}
+          className="absolute text-xl md:text-2xl pointer-events-none"
+          initial={{
+            x: 80,
+            y: "85%",
+            opacity: 0,
+          }}
+          animate={{
+            x: [80, 200 + i * 50, 400 + i * 80, 800],
+            y: ["85%", "70%", "75%", "65%"],
+            opacity: [0, 1, 1, 0],
+            rotate: [0, 180, 360, 540],
+          }}
+          transition={{
+            duration: 8 + i * 0.5,
+            repeat: Infinity,
+            delay: i * 1.5,
+            ease: "easeInOut",
+          }}
+        >
+          {flower}
+        </motion.div>
+      ))}
+
       {/* Terminal-like decorative elements */}
       <motion.div
-        className="absolute top-10 left-10 hidden md:flex items-center gap-2 text-muted-foreground font-mono text-sm"
+        className="absolute top-20 left-10 hidden md:flex items-center gap-2 text-muted-foreground font-mono text-sm"
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5 }}
@@ -115,7 +168,7 @@ const Landing = () => {
         {text.split('').map((char, index) => (
           <motion.span
             key={index}
-            className="text-4xl md:text-6xl lg:text-8xl font-bold font-heading"
+            className="text-4xl md:text-6xl lg:text-8xl font-black"
             initial={{ opacity: 0, y: 50, rotateX: -90 }}
             animate={{ opacity: 1, y: 0, rotateX: 0 }}
             transition={{
@@ -125,8 +178,11 @@ const Landing = () => {
               stiffness: 100,
             }}
             style={{
-              color: 'hsl(var(--primary))',
-              textShadow: '0 0 40px hsl(var(--primary) / 0.5), 0 0 80px hsl(var(--primary) / 0.3)',
+              background: 'var(--gradient-hero)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(0 4px 20px hsl(170 100% 45% / 0.4))',
             }}
           >
             {char === ' ' ? '\u00A0' : char}
@@ -136,7 +192,7 @@ const Landing = () => {
 
       {/* Typing animation subtitle */}
       <motion.div
-        className="mt-8 relative z-10 text-lg md:text-2xl font-light tracking-widest text-muted-foreground"
+        className="mt-8 relative z-10 text-xl md:text-3xl font-bold tracking-widest"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
@@ -147,23 +203,23 @@ const Landing = () => {
       {/* Enter button with code theme */}
       <motion.button
         onClick={handleEnter}
-        className="mt-12 px-8 py-4 relative z-10 group overflow-hidden rounded-lg border border-primary/50 bg-primary/10 backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-primary/20"
+        className="mt-12 px-10 py-5 relative z-10 group overflow-hidden rounded-xl border-2 border-primary/60 bg-primary/15 backdrop-blur-sm transition-all duration-300 hover:border-primary hover:bg-primary/25 hover:shadow-lg hover:shadow-primary/30"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: canEnter ? 1 : 0, y: canEnter ? 0 : 20 }}
         transition={{ duration: 0.5 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        <span className="relative z-10 font-mono text-lg font-semibold text-primary">
+        <span className="relative z-10 font-mono text-xl font-bold text-primary">
           {'>'} Enter_Portfolio
         </span>
       </motion.button>
 
       {/* Code-themed hint */}
       <motion.p
-        className="mt-6 text-sm text-muted-foreground font-mono"
+        className="mt-6 text-base text-muted-foreground font-mono font-semibold"
         initial={{ opacity: 0 }}
-        animate={{ opacity: canEnter ? 0.6 : 0 }}
+        animate={{ opacity: canEnter ? 0.8 : 0 }}
         transition={{ delay: 2 }}
       >
         // Click anywhere to continue
@@ -173,7 +229,7 @@ const Landing = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
       
       {/* Corner decorations */}
-      <div className="absolute bottom-10 right-10 text-primary/30 font-mono text-xs hidden md:block">
+      <div className="absolute bottom-10 right-10 text-primary/40 font-mono text-sm font-bold hidden md:block">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

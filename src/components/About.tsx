@@ -25,15 +25,15 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-32 relative">
+    <section id="about" className="py-20 md:py-32 relative section-bg">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-primary font-mono text-sm mb-4">{"// About Me"}</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Who <span className="text-gradient">I Am</span>
+          <p className="text-primary font-mono text-sm mb-4 font-bold">{"// About Me"}</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-4">
+            Who <span className="text-bold-gradient">I Am</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
