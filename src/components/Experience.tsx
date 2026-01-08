@@ -26,8 +26,8 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 md:py-32 relative">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="py-20 md:py-32 relative section-bg white-paper floating-particles">
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div 
           className="text-center mb-16"
@@ -36,11 +36,11 @@ const Experience = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <p className="text-primary font-mono text-sm mb-4">{"// Experience & Education"}</p>
-          <h2 className="text-3xl md:text-5xl font-bold font-heading mb-4">
-            My <span className="text-gradient">Journey</span>
+          <p className="text-primary font-mono text-sm mb-4 font-bold tracking-widest">{"// Experience & Education"}</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 font-display">
+            My <span className="text-bold-gradient">Journey</span>
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">

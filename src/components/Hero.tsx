@@ -4,12 +4,12 @@ import profileImage from "@/assets/profile.jpg";
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden py-20">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden py-20 section-bg white-paper">
       {/* Enhanced background with animated glow orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-[100px] animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-primary/10 rounded-full" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-accent/5 rounded-full" />
       </div>
@@ -51,8 +51,8 @@ const Hero = () => {
             <p className="text-primary font-mono text-sm md:text-base mb-4 tracking-wider">
               {"<Hello World />"}
             </p>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-heading mb-4">
-              I'm <span className="text-gradient">Midhunbalaji</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-4 font-display">
+              I'm <span className="text-bold-gradient">Midhunbalaji</span>
             </h1>
             <h2 className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-light mb-6">
               Full Stack Developer & AI Engineer
