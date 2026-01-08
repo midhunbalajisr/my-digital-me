@@ -206,37 +206,56 @@
     background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent);
   }
 
-  /* Animated white paper effect */
+  /* Animated white paper effect with scratch lines */
   .white-paper {
     @apply bg-background;
-    background-image: 
-      linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.02) 50%, transparent 100%),
-      linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--card)) 100%);
+    background: 
+      linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.01) 50%, transparent 100%),
+      hsl(var(--background));
     position: relative;
   }
 
   .white-paper::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 200%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      hsl(var(--primary) / 0.04) 25%,
-      hsl(var(--accent) / 0.02) 50%,
-      hsl(var(--primary) / 0.04) 75%,
-      transparent 100%
-    );
-    animation: sweep-animation 8s ease-in-out infinite;
+    inset: 0;
+    background: 
+      /* Floating scratch lines */
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 200px,
+        hsl(var(--primary) / 0.03) 200px,
+        hsl(var(--primary) / 0.03) 201px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 150px,
+        hsl(var(--accent) / 0.02) 150px,
+        hsl(var(--accent) / 0.02) 151px
+      );
+    animation: scratch-float 20s ease-in-out infinite;
+    pointer-events: none;
   }
 
-  @keyframes sweep-animation {
-    0% { transform: translateX(-50%); }
-    50% { transform: translateX(50%); }
-    100% { transform: translateX(-50%); }
+  @keyframes scratch-float {
+    0%, 100% { 
+      transform: translateX(0) translateY(0); 
+      opacity: 0.4;
+    }
+    25% { 
+      transform: translateX(10px) translateY(-5px); 
+      opacity: 0.6;
+    }
+    50% { 
+      transform: translateX(0) translateY(-10px); 
+      opacity: 0.5;
+    }
+    75% { 
+      transform: translateX(-10px) translateY(-5px); 
+      opacity: 0.7;
+    }
   }
 
   /* Floating particles animation */
@@ -249,16 +268,52 @@
     position: absolute;
     inset: 0;
     background: 
-      radial-gradient(circle at 20% 30%, hsl(var(--primary) / 0.06) 0%, transparent 20%),
-      radial-gradient(circle at 80% 70%, hsl(var(--accent) / 0.04) 0%, transparent 20%),
-      radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.03) 0%, transparent 30%);
-    animation: float-particles 12s ease-in-out infinite;
+      radial-gradient(circle at 10% 20%, hsl(var(--primary) / 0.08) 0%, transparent 15%),
+      radial-gradient(circle at 90% 80%, hsl(var(--accent) / 0.06) 0%, transparent 15%),
+      radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.04) 0%, transparent 25%),
+      radial-gradient(circle at 30% 70%, hsl(var(--accent) / 0.05) 0%, transparent 18%),
+      radial-gradient(circle at 70% 30%, hsl(var(--primary) / 0.06) 0%, transparent 20%);
+    animation: float-particles 15s ease-in-out infinite;
     pointer-events: none;
+    z-index: 1;
   }
 
   @keyframes float-particles {
-    0%, 100% { opacity: 0.6; transform: translateY(0) scale(1); }
-    50% { opacity: 1; transform: translateY(-20px) scale(1.05); }
+    0%, 100% { 
+      opacity: 0.5; 
+      transform: translateY(0) scale(1) rotate(0deg); 
+    }
+    33% { 
+      opacity: 0.8; 
+      transform: translateY(-15px) scale(1.02) rotate(1deg); 
+    }
+    66% { 
+      opacity: 0.6; 
+      transform: translateY(-25px) scale(1.05) rotate(-1deg); 
+    }
+  }
+
+  /* Animated floating dots */
+  .floating-dots {
+    position: relative;
+  }
+
+  .floating-dots::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle, hsl(var(--primary) / 0.15) 1px, transparent 1px),
+      radial-gradient(circle, hsl(var(--accent) / 0.1) 1px, transparent 1px);
+    background-size: 60px 60px, 90px 90px;
+    background-position: 0 0, 30px 30px;
+    animation: dots-drift 25s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes dots-drift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(60px, 60px); }
   }
 
   /* Page flip animation */
