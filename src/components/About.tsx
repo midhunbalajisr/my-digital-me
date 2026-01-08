@@ -25,12 +25,12 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 md:py-32 relative section-bg">
-      <div className="container mx-auto px-6">
+    <section id="about" className="py-20 md:py-32 relative section-bg white-paper floating-particles">
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-primary font-mono text-sm mb-4 font-bold">{"// About Me"}</p>
-          <h2 className="text-3xl md:text-5xl font-black mb-4">
+          <p className="text-primary font-mono text-sm mb-4 font-bold tracking-widest">{"// About Me"}</p>
+          <h2 className="text-3xl md:text-5xl font-black mb-4 font-display">
             Who <span className="text-bold-gradient">I Am</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
